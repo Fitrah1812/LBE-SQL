@@ -1,0 +1,73 @@
+--Create Table------------------------------------------
+
+create table penulis (
+    p_id integer not null primary key,
+    nama_penulis varchar2(60)
+);
+
+create table kategori (
+    k_id varchar2(60) not null primary key,
+    nama_kategori varchar2(60)
+);
+
+create table buku (
+    b_id varchar2(60) not null primary key,
+    p_id integer,
+    k_id varchar2(60),
+    judul varchar2(60),
+    tahun_terbit integer,
+    foreign key (p_id) references penulis(p_id),
+    foreign key (k_id) references kategori(k_id) 
+);
+
+-----------------------------------------------------------------------
+
+--drop table-----------------------------------------------------------
+drop table buku;
+drop table kategori;
+drop table penulis;
+-----------------------------------------------------------------------
+
+--insert data----------------------------------------------------------
+--penulis
+insert into penulis values(1, 'Dee Lestari');
+insert into penulis values(2, 'Y.B. Mangunwijaya');
+insert into penulis values(3, 'Bana Tan');
+insert into penulis values(4, 'Bana Tan');
+--kategori
+insert into kategori values('K0001', 'Fiksi');
+insert into kategori values('K0002', 'Metropop');
+
+--buku
+insert into buku values('B0001', 1, 'K0001', 'Rectoverso', 2002); 
+insert into buku values('B0002', 2, 'K0001', 'Burung-burung Manyar', 2008);
+insert into buku values('B0003', 3, 'K0002', 'Winter in Tokyo', 2010);
+insert into buku values('B0004', 1, 'K0001', 'Supernova', 2010);
+
+-------------------------------------------------------------------------
+
+--select--------------------------------------
+select * from kategori;
+select * from penulis;
+select * from buku;
+
+select distinct * from kategori;
+select distinct * from penulis;
+select distinct * from buku;
+
+select distinct * from kategori;
+select distinct nama_penulis from penulis;
+select distinct * from buku;
+
+---------------------------------------------
+
+--delete data
+delete from penulis where nama_penulis = 'Dee Lestari';
+delete from penulis where nama_penulis = 'Dee Lestari';
+delete from penulis where nama_penulis = 'Dee Lestari';
+
+--update
+update penulis 
+set nama_penulis='Dee Lestari' 
+where nama_penulis = 'Rere Lestari';
+
